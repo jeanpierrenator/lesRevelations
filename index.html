@@ -6,15 +6,15 @@
 </head>
 <body>
   <h1>Qui voulez-vous contacter ?</h1>
-  <form onsubmit="validate()">
-    <input type="text" id="name" placeholder="Entrez un nom">
+  <form>
+    <input type="text" id="name" placeholder="Entrez un nom" onkeypress="return checkEnter(event)"> <!-- Changement de l'attribut onkeydown en onkeypress -->
     <button type="button" onclick="validate()">Valider</button>
   </form>
   <div id="video" style="display:none;">
-    <a href="https://youtu.be/FCU0CFZQ2VY" target="_blank">Cliquez pour avoir les réponse</a> <!-- Changement de la balise <iframe> en <a> -->
+    <a href="https://youtu.be/FCU0CFZQ2VY" target="_blank">Cliquer pour avoir des réponses</a>
   </div>
   <script>
-    function validate() {
+    function validate(e) {
       var name = document.getElementById("name").value;
       if (name.toLowerCase() == "maxwell") {
         document.getElementById("video").style.display = "block";
@@ -22,6 +22,12 @@
         alert("Nom incorrect");
       }
       return false;
+    }
+
+    function checkEnter(e) { // Modification de cette fonction
+      if (e.key == "Enter") {
+        return false; // Retourne false si la touche est Entrée
+      }
     }
   </script>
 </body>
